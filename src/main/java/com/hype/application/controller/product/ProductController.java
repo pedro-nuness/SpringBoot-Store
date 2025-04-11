@@ -63,7 +63,6 @@ public class ProductController {
         productImage.setProduct(newProduct);
         newProduct.getImages().add(productImage);
 
-
         this.repository.save(newProduct);
         return ResponseEntity.ok().build();
     }
