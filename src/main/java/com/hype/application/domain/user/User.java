@@ -1,20 +1,20 @@
 package com.hype.application.domain.user;
 
+import com.hype.application.domain.user.useraddress.UserAddress;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
-import org.apache.tomcat.util.net.jsse.JSSEImplementation;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import lombok.AllArgsConstructor;
 
 @Table(name = "users")
 @Entity(name = "users")
@@ -31,6 +31,8 @@ public class User implements UserDetails {
     private String password;
     private UserRole role;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserAddress> addresses = new ArrayList<>();
 
     public User(String login, String password, UserRole role) {
         this.login = login;

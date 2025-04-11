@@ -1,6 +1,6 @@
-package com.hype.application.respositories;
+package com.hype.application.respositories.product;
 
-import com.hype.application.domain.product_image.ProductImage;
+import com.hype.application.domain.product.productimage.ProductImage;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ProductImageRepository extends JpaRepository<ProductImage, String> {

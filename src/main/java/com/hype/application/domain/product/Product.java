@@ -1,6 +1,6 @@
 package com.hype.application.domain.product;
 
-import com.hype.application.domain.product_image.ProductImage;
+import com.hype.application.domain.product.productimage.ProductImage;
 import jakarta.persistence.*;
 
 import lombok.AllArgsConstructor;

@@ -1,7 +1,7 @@
 package com.hype.application.domain.product;
 
 
-import com.hype.application.domain.product_image.ProductImageResponseDTO;
+import com.hype.application.domain.product.productimage.ProductImageResponseDTO;
 import java.util.List;
 
 public record ProductResponseDTO

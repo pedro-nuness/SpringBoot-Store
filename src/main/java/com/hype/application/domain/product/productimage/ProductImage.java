@@ -1,9 +1,8 @@
-package com.hype.application.domain.product_image;
+package com.hype.application.domain.product.productimage;
 
 
 
 import com.hype.application.domain.product.Product;
-import com.hype.application.domain.product.ProductRequestDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -33,5 +32,4 @@ public class ProductImage {
         this.url = productImageRequestDTO.URL();
     }
 
-    // Getters e setters
 }

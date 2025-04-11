@@ -1,4 +1,4 @@
-package com.hype.application.respositories;
+package com.hype.application.respositories.user;
 
 import com.hype.application.domain.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;

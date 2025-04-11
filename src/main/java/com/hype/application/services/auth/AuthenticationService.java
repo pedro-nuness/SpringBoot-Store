@@ -1,6 +1,6 @@
-package com.hype.application.service;
+package com.hype.application.services.auth;
 
-import com.hype.application.respositories.UserRepository;
+import com.hype.application.respositories.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

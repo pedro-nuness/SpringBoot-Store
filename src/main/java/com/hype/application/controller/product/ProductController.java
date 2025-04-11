@@ -1,4 +1,4 @@
-package com.hype.application.controller;
+package com.hype.application.controller.product;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -6,15 +6,14 @@ import com.hype.application.components.FileStorageProperties;
 import com.hype.application.domain.product.Product;
 import com.hype.application.domain.product.ProductRequestDTO;
 import com.hype.application.domain.product.ProductResponseDTO;
-import com.hype.application.domain.product_image.ProductImage;
-import com.hype.application.domain.product_image.ProductImageRequestDTO;
+import com.hype.application.domain.product.productimage.ProductImage;
+import com.hype.application.domain.product.productimage.ProductImageRequestDTO;
 import com.hype.application.exceptions.EventErrorTransferingFile;
 import com.hype.application.exceptions.EventInvalidJsonException;
 import com.hype.application.exceptions.EventNotFoundException;
-import com.hype.application.respositories.ProductRepository;
+import com.hype.application.respositories.product.ProductRepository;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

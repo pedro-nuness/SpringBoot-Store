@@ -1,4 +1,4 @@
-package com.hype.application.controller;
+package com.hype.application.controller.product;
 
 
 import org.springframework.http.MediaType;

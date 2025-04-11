@@ -1,4 +1,4 @@
-package com.hype.application.domain.product_image;
+package com.hype.application.domain.product.productimage;
 
 public record ProductImageResponseDTO(
         String id,
