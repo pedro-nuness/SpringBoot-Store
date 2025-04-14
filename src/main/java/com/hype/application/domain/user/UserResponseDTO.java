@@ -1,6 +1,6 @@
 package com.hype.application.domain.user;
 
-import com.hype.application.domain.user.useraddress.UserAddressResponseDTO;
+import com.hype.application.domain.user.userAddress.UserAddressResponseDTO;
 
 import java.util.List;
 

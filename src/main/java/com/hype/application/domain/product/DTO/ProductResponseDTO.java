@@ -1,6 +1,7 @@
-package com.hype.application.domain.product;
+package com.hype.application.domain.product.DTO;
 
 
+import com.hype.application.domain.product.Product;
 import com.hype.application.domain.product.productimage.ProductImageResponseDTO;
 import java.util.List;
 

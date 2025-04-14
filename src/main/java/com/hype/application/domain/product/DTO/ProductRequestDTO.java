@@ -1,4 +1,4 @@
-package com.hype.application.domain.product;
+package com.hype.application.domain.product.DTO;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

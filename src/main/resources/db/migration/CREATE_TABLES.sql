@@ -29,3 +29,18 @@ CREATE TABLE users_address(
     users_id TEXT NOT NULL,
     CONSTRAINT fk_users FOREIGN KEY (users_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+CREATE TABLE user_cart (
+                           id TEXT PRIMARY KEY UNIQUE NOT NULL,
+                           user_id TEXT UNIQUE NOT NULL,
+                           CONSTRAINT fk_user_cart_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE user_cart_item (
+                                id TEXT PRIMARY KEY UNIQUE NOT NULL,
+                                cart_id TEXT NOT NULL,
+                                product_id TEXT NOT NULL,
+                                quantity INTEGER NOT NULL,
+                                CONSTRAINT fk_cart FOREIGN KEY (cart_id) REFERENCES user_cart(id) ON DELETE CASCADE,
+                                CONSTRAINT fk_product_cart FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE
+);

@@ -1,5 +1,6 @@
 package com.hype.application.domain.product;
 
+import com.hype.application.domain.product.DTO.ProductRequestDTO;
 import com.hype.application.domain.product.productimage.ProductImage;
 import jakarta.persistence.*;
 

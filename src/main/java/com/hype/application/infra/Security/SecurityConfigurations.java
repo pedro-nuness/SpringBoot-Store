@@ -28,9 +28,10 @@ public class SecurityConfigurations {
             .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "/product").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/product").hasAnyAuthority("ROLE_ADMIN", "ROLE_MASTER") //gerenciamento de produtos, apenas para admins
+                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll() // logar, permita qualquer um
+                        .requestMatchers(HttpMethod.POST, "/auth/register").permitAll() //registrar usuario, permita qualquer um
+                        .requestMatchers(HttpMethod.GET, "/images").permitAll() // imagens dos produtos, public files, etc... permita qualquer um
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

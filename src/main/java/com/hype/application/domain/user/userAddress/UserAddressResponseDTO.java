@@ -1,4 +1,4 @@
-package com.hype.application.domain.user.useraddress;
+package com.hype.application.domain.user.userAddress;
 
 public record UserAddressResponseDTO (
         String id,

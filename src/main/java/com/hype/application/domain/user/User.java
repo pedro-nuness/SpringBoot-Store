@@ -1,6 +1,7 @@
 package com.hype.application.domain.user;
 
-import com.hype.application.domain.user.useraddress.UserAddress;
+import com.hype.application.domain.user.userAddress.UserAddress;
+import com.hype.application.domain.user.userCart.UserCart;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -34,6 +35,9 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserAddress> addresses = new ArrayList<>();
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private UserCart cart;
+
     public User(String login, String password, UserRole role) {
         this.login = login;
         this.password = password;
@@ -42,7 +46,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if(this.role == UserRole.ADMIN )
+        if(this.role == UserRole.ADMIN || this.role == UserRole.MASTER )
             return List.of( new SimpleGrantedAuthority("ROLE_ADMIN"),
                     new SimpleGrantedAuthority("ROLE_USER"));
         else
@@ -78,4 +82,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }

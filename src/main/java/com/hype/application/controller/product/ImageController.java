@@ -32,7 +32,7 @@ public class ImageController {
                     .contentType(MediaType.IMAGE_JPEG) // ou IMAGE_PNG dependendo da extensão
                     .body(image);
         } catch (IOException e) {
-            return ResponseEntity.status(500).body("Erro ao ler a imagem");
+            return ResponseEntity.status(500).body("Error while reading image");
         }
     }
 }

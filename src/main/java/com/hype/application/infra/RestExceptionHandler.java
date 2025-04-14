@@ -47,5 +47,9 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(threatResponse);
     }
 
-
+    @ExceptionHandler( EventErrorUnauthoriazedException.class)
+    private ResponseEntity<RestErrorMessage> eventErrorUnauthorizedHandler(EventErrorUnauthoriazedException exception){
+        RestErrorMessage threatResponse = new RestErrorMessage(HttpStatus.UNAUTHORIZED, exception.getMessage());
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(threatResponse);
+    }
 }
