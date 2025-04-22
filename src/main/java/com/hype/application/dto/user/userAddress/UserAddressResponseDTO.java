@@ -1,0 +1,26 @@
+package com.hype.application.dto.user.userAddress;
+
+import com.hype.application.domain.user.userAddress.UserAddress;
+
+public record UserAddressResponseDTO (
+        String id,
+        String name,
+        String cep,
+        String uf,
+        String city,
+        String address
+){
+
+   public UserAddressResponseDTO(UserAddress userAddress){
+        this(
+                userAddress.getId(),
+                userAddress.getName(),
+                userAddress.getCep(),
+                userAddress.getUf(),
+                userAddress.getCity(),
+                userAddress.getAddress()
+        );
+    }
+}
+
+

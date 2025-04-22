@@ -1,7 +1,6 @@
 package com.hype.application.infra.Security;
 
-import com.hype.application.infra.TokenService;
-import com.hype.application.respositories.user.UserRepository;
+import com.hype.application.repository.user.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,13 +25,13 @@ public class SecurityFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         var token = this.recoverToken(request);
-        if(token != null) {
+        if(token != null ) {
             var login = tokenService.ValidateToken(token);
             UserDetails user = userRepository.findByLogin(login);
-
-            var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
-
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+            if(user != null) {
+                var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
         }
         filterChain.doFilter(request, response);
     }

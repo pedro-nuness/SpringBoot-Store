@@ -1,8 +1,7 @@
 package com.hype.application.domain.user;
 
-import com.hype.application.infra.Authority;
+import com.hype.application.infra.Security.Authority;
 import lombok.Getter;
-import lombok.Setter;
 
 
 import java.util.List;

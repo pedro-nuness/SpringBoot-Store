@@ -1,7 +1,7 @@
 package com.hype.application.controller.user;
-import com.hype.application.domain.user.userCart.DTO.AddItemToCartDTO;
-import com.hype.application.domain.user.userCart.DTO.CartResponseDTO;
-import com.hype.application.services.user.userCart.UserCartService;
+import com.hype.application.dto.user.userCart.AddItemToCartDTO;
+import com.hype.application.dto.user.userCart.CartResponseDTO;
+import com.hype.application.service.user.userCart.UserCartService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +25,13 @@ public class UserCartController {
     public ResponseEntity<CartResponseDTO> getCart(@PathVariable String userId) {
         return ResponseEntity.ok(userCartService.getCartByUserId(userId));
     }
+
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<CartResponseDTO> DeleteCartItem(@PathVariable String userId) {
+        return ResponseEntity.ok(userCartService.getCartByUserId(userId));
+    }
+
+
 
 
 }

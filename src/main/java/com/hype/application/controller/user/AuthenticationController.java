@@ -1,8 +1,10 @@
 package com.hype.application.controller.user;
 
+import com.hype.application.dto.user.AuthenticationDTO;
+import com.hype.application.dto.user.LoginResponseDTO;
 import com.hype.application.domain.user.*;
-import com.hype.application.infra.TokenService;
-import com.hype.application.services.user.UserServices;
+import com.hype.application.infra.Security.TokenService;
+import com.hype.application.service.user.UserServices;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

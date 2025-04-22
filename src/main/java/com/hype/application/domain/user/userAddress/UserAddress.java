@@ -1,6 +1,7 @@
 package com.hype.application.domain.user.userAddress;
 
 
+import com.hype.application.dto.user.userAddress.UserAddressRequestDTO;
 import com.hype.application.domain.user.User;
 import jakarta.persistence.*;
 import lombok.*;

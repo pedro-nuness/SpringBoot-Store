@@ -1,13 +1,13 @@
 package com.hype.application.controller.user;
 
 import com.hype.application.domain.user.User;
-import com.hype.application.domain.user.UserResponseDTO;
+import com.hype.application.dto.user.UserResponseDTO;
 import com.hype.application.domain.user.userAddress.UserAddress;
-import com.hype.application.domain.user.userAddress.UserAddressRequestDTO;
-import com.hype.application.exceptions.EventErrorUnauthoriazedException;
-import com.hype.application.exceptions.EventNotFoundException;
-import com.hype.application.respositories.user.UserAddressRepository;
-import com.hype.application.services.user.UserServices;
+import com.hype.application.dto.user.userAddress.UserAddressRequestDTO;
+import com.hype.application.exception.EventErrorUnauthoriazedException;
+import com.hype.application.exception.EventNotFoundException;
+import com.hype.application.repository.user.UserAddressRepository;
+import com.hype.application.service.user.UserServices;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;

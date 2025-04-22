@@ -22,22 +22,60 @@ public class SecurityConfigurations {
     @Autowired
     SecurityFilter securityFilter;
 
+    private static final String[] AUTH_WHITELIST = {
+            "/auth/login",
+            "/auth/register"
+    };
+
+    private static final String[] PUBLIC_GET_RESOURCES = {
+            "/files/**"
+    };
+
+    private static final String[] ADMIN_ENDPOINTS = {
+            "/product/**",
+            "/category/**",
+            "/product_type/**",
+            "/collection/**"
+    };
+    private static final String[] ADMIN_GET_ENDPOINTS = {
+
+    };
+
+    private static final String[] PUBLIC_GET_DATA = {
+            "/product/**",
+            "/category/**",
+            "/product_type/**",
+            "/collection/**"
+    };
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-            .csrf(csrf -> csrf.disable())
+                .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "/product").hasAnyAuthority("ROLE_ADMIN", "ROLE_MASTER") //gerenciamento de produtos, apenas para admins
-                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll() // logar, permita qualquer um
-                        .requestMatchers(HttpMethod.POST, "/auth/register").permitAll() //registrar usuario, permita qualquer um
-                        .requestMatchers(HttpMethod.GET, "/images").permitAll() // imagens dos produtos, public files, etc... permita qualquer um
+                        // Auth
+                        .requestMatchers(HttpMethod.POST, AUTH_WHITELIST).permitAll()
+
+                        // Public resources
+                        .requestMatchers(HttpMethod.GET, PUBLIC_GET_RESOURCES).permitAll()
+
+                        // Public access
+                        .requestMatchers(HttpMethod.GET, PUBLIC_GET_DATA).permitAll()
+
+                        // Admin-only endpoints
+                        .requestMatchers(HttpMethod.GET, ADMIN_GET_ENDPOINTS).hasAnyAuthority("ROLE_ADMIN", "ROLE_MASTER")
+                        .requestMatchers(HttpMethod.POST, ADMIN_ENDPOINTS).hasAnyAuthority("ROLE_ADMIN", "ROLE_MASTER")
+                        .requestMatchers(HttpMethod.PUT, ADMIN_ENDPOINTS).hasAnyAuthority("ROLE_ADMIN", "ROLE_MASTER")
+                        .requestMatchers(HttpMethod.DELETE, ADMIN_ENDPOINTS).hasAnyAuthority("ROLE_ADMIN", "ROLE_MASTER")
+
+                        // All other requests
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
-
     }
+
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {

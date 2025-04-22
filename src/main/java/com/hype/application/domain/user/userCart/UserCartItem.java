@@ -1,6 +1,6 @@
 package com.hype.application.domain.user.userCart;
 
-import com.hype.application.domain.product.Product;
+import com.hype.application.domain.Product.Product;
 import jakarta.persistence.*;
 import lombok.*;
 
