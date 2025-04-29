@@ -35,6 +35,12 @@ public class ProductManagementController {
         return ResponseEntity.ok(productList);
     }
 
+    @GetMapping("{id}")
+    public ResponseEntity<ProductResponseDTO> getProduct(@PathVariable String id){
+       ProductResponseDTO productList = new ProductResponseDTO(this.productServices.getProduct(id));
+        return ResponseEntity.ok(productList);
+    }
+
     @PostMapping
     public ResponseEntity<Void> postProduct(@RequestBody ProductRequestDTO dto) {
         Category category = categoryServices.getCategoryById(dto.category());

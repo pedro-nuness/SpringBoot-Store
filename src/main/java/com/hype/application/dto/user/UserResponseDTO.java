@@ -9,7 +9,9 @@ import java.util.List;
 
 public record UserResponseDTO
         (String id,
-         String login,
+         String email,
+         String firstName,
+         String lastName,
          UserRole role,
          List<UserAddressResponseDTO> addresses
         ) {
@@ -17,7 +19,9 @@ public record UserResponseDTO
     public UserResponseDTO(User user){
         this(
                 user.getId(),
-                user.getLogin(),
+                user.getEmail(),
+                user.getFirstName(),
+                user.getLastName(),
                 user.getRole(),
                 user.getAddresses().stream().map(UserAddressResponseDTO::new).toList()
         );

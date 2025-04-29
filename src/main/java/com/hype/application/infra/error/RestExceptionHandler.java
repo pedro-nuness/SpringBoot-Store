@@ -52,4 +52,10 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         RestErrorMessage threatResponse = new RestErrorMessage(HttpStatus.UNAUTHORIZED, exception.getMessage());
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(threatResponse);
     }
+
+    @ExceptionHandler( EventErrorExpiredTokenException.class)
+    private ResponseEntity<RestErrorMessage> eventErrorExpiredToken(EventErrorExpiredTokenException exception){
+        RestErrorMessage threatResponse = new RestErrorMessage(HttpStatus.UNAUTHORIZED, exception.getMessage());
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(threatResponse);
+    }
 }

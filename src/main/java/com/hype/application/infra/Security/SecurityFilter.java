@@ -1,6 +1,8 @@
 package com.hype.application.infra.Security;
 
+import com.hype.application.exception.EventErrorExpiredTokenException;
 import com.hype.application.repository.user.UserRepository;
+import com.hype.application.service.auth.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,8 +28,8 @@ public class SecurityFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         var token = this.recoverToken(request);
         if(token != null ) {
-            var login = tokenService.ValidateToken(token);
-            UserDetails user = userRepository.findByLogin(login);
+            var login = tokenService.ValidateToken(token, TokenType.ACCESS.getClaimValue());
+            UserDetails user = userRepository.findByEmail(login);
             if(user != null) {
                 var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
                 SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -44,4 +46,5 @@ public class SecurityFilter extends OncePerRequestFilter {
 
         return authHeader.replace("Bearer ", "");
     }
+
 }

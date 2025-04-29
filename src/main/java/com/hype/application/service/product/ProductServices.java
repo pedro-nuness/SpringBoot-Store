@@ -115,21 +115,6 @@ public class ProductServices {
         this.productVariationServices.getProductVariationRepository().save(variation);
     }
 
-    public void updateVariation(String ID, String variationID, ProductVariation variationUpdate){
-        Product product = getProduct(ID);
-
-        ProductVariation existingVariation = product.getVariations().stream()
-                .filter(v -> v.getId().equals(variationID))
-                .findFirst()
-                .orElseThrow(EventNotFoundException::new);
-
-        existingVariation.setColor(variationUpdate.getColor());
-        existingVariation.setSizes(variationUpdate.getSizes());
-        existingVariation.setImages(variationUpdate.getImages());
-
-        this.productVariationServices.getProductVariationRepository().save(existingVariation);
-    }
-
     public List<ProductVariation> getVariation(){
         return this.getProductVariationServices().getProductVariationRepository().findAll();
     }

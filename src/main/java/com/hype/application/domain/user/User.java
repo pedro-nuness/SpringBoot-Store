@@ -2,6 +2,7 @@ package com.hype.application.domain.user;
 
 import com.hype.application.domain.user.userAddress.UserAddress;
 import com.hype.application.domain.user.userCart.UserCart;
+import com.hype.application.dto.auth.request.RegisterDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -28,8 +29,14 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
-    private String login;
+    private String email;
+    private String firstName;
+    private String lastName;
+    private String CPF;
     private String password;
+    private Integer birthDay;
+    private Integer birthMonth;
+    private Integer birthYear;
     private UserRole role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -38,9 +45,14 @@ public class User implements UserDetails {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private UserCart cart;
 
-    public User(String login, String password, UserRole role) {
-        this.login = login;
-        this.password = password;
+    public User(RegisterDTO data, String encryptedPassword, UserRole role) {
+        this.email = data.email();
+        this.password = encryptedPassword;
+        this.firstName = data.firstname();
+        this.lastName = data.lastname();
+        this.birthDay = data.birth_day();
+        this.birthMonth = data.birth_month();
+        this.birthYear = data.birth_year();
         this.role = role;
     }
 
@@ -55,7 +67,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return login;
+        return email;
     }
 
     @Override

@@ -6,8 +6,10 @@ import com.hype.application.domain.ProductVariation.ProductVariation;
 import com.hype.application.service.product.ProductServices;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -18,7 +20,6 @@ public class ProductVariationController {
     @Autowired
     ProductServices productServices;
 
-
     @GetMapping("/variation")
     public ResponseEntity<List<ProductVariationDTO>> getVariation() {
         return ResponseEntity.ok(productServices.getVariation().stream().map(ProductVariationDTO::new).toList());
@@ -27,14 +28,6 @@ public class ProductVariationController {
     @PostMapping("{id}/variation")
     public ResponseEntity<Void> addVariation(@PathVariable String id, @RequestBody ProductVariationRequestDTO dto) {
         productServices.addVariation(id, new ProductVariation(dto));
-        return ResponseEntity.ok().build();
-    }
-
-    @PutMapping("{id}/variation/{variationId} ")
-    public ResponseEntity<Void> addVariation(@PathVariable("id") String id,
-                                             @PathVariable("variationId") String variationId,
-                                             @RequestBody ProductVariationRequestDTO dto) {
-        productServices.updateVariation(id, variationId, new ProductVariation(dto));
         return ResponseEntity.ok().build();
     }
 

@@ -19,9 +19,16 @@ CREATE TABLE product_image (
 
 CREATE TABLE users (
     id TEXT PRIMARY KEY UNIQUE NOT NULL,
-    login TEXT NOT NULL UNIQUE,
+    email TEXT NOT NULL UNIQUE,
+    first_name TEXT,
+    last_name TEXT,
+    cpf TEXT,
+    birth_day INTEGER,
+    birth_month INTEGER,
+    birth_year INTEGER,
     password TEXT NOT NULL,
-    role TEXT NOT NULL
+    role TEXT NOT NULL,
+    CONSTRAINT unique_cpf UNIQUE (cpf)
 );
 
 CREATE TABLE users_address(
@@ -111,4 +118,14 @@ CREATE TABLE product_variation_image(
      id TEXT PRIMARY KEY UNIQUE NOT NULL,
      product_variation_id TEXT NOT NULL,
      CONSTRAINT fk_product_variation FOREIGN KEY (product_variation_id) REFERENCES product_variation(id) ON DELETE CASCADE
+);
+
+
+CREATE TABLE refresh_tokens (
+                                id TEXT PRIMARY KEY UNIQUE NOT NULL,
+                                user_id TEXT NOT NULL,
+                                token_hash TEXT NOT NULL UNIQUE,
+                                active BOOLEAN NOT NULL DEFAULT TRUE,
+                                created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                CONSTRAINT fk_refresh_tokens_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );

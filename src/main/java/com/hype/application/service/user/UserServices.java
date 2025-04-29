@@ -21,7 +21,7 @@ public class UserServices {
 
     public boolean CurrentUserNotAdmin(){
         String loggedUsername = SecurityContextHolder.getContext().getAuthentication().getName();
-        User loggedUser = userRepository.findUserByLogin(loggedUsername);
+        User loggedUser = userRepository.findUserByEmail(loggedUsername);
         if(loggedUser == null){
             return true;
         }
@@ -32,7 +32,7 @@ public class UserServices {
     public User AuthenticateUser(String ID, boolean AdminOnly) {
 
         String loggedUsername = SecurityContextHolder.getContext().getAuthentication().getName();
-        User loggedUser = userRepository.findUserByLogin(loggedUsername);
+        User loggedUser = userRepository.findUserByEmail(loggedUsername);
 
         //Não está logado?
         if(loggedUser == null) {
