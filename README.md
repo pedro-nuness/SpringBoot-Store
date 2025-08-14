@@ -41,8 +41,7 @@ A arquitetura do projeto é baseada em camadas bem definidas (**Controladores**,
 | 🛡️   | **Segurança** | Implementa um sistema de autenticação robusto baseado em **JWT** (JSON Web Tokens). Inclui gerenciamento de **refresh tokens**, filtros de segurança e configuração de CORS para comunicação segura com frontends como o Angular.    |
 | 🔌   | **Integrações** | Utiliza **Spring Data JPA** para interações com o banco de dados e **Flyway** para gerenciar a evolução do esquema do banco de dados. Integra também um serviço de armazenamento de arquivos para lidar com imagens de produtos.   |
 | 🛒   | **E-commerce** | Gerencia o ciclo de vida completo de uma loja: **catálogo de produtos** com variações e tipos, **coleções**, **carrinhos de compras** de usuários e CRUD completo para **usuários e endereços**.                                |
-| 📁   | **Estrutura** | O código é organizado em pacotes lógicos (`controller`, `service`, `repository`, `domain`, `dto`, `infra`), o que melhora a modularidade e a clareza do projeto. Exceções personalizadas garantem um tratamento de erros consistente. |
-| 🧪   | **Testes** | Inclui testes para garantir que os componentes-chave do Spring Boot e a inicialização do contexto da aplicação funcionem corretamente.                                                                                             |
+| 📁   | **Estrutura** | O código é organizado em pacotes lógicos (`controller`, `service`, `repository`, `domain`, `dto`, `infra`), o que melhora a modularidade e a clareza do projeto. Exceções personalizadas garantem um tratamento de erros consistente. |                                                                                      |
 
 -----
 
